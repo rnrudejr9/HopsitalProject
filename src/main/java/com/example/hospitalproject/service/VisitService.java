@@ -27,7 +27,7 @@ public class VisitService {
                 .orElseThrow(() -> new HospitalReviewException(ErrorCode.HOSPITAL_NOT_FOUND, String.format("hospitalId:%s 가 없습니다.", dto.getHospitalId())));
 
         // user가 없을 때 등록 불가
-        User user = userRepository.findByUsername(userName)
+        User user = userRepository.findByUserName(userName)
                 .orElseThrow(() -> new HospitalReviewException(ErrorCode.USER_NOT_FOUND, String.format("'%s' user 가 없습니다.", userName)));
 
         Visit visit = Visit.builder()

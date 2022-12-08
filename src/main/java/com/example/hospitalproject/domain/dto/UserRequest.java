@@ -8,12 +8,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserRequest {
-    private String username;
+    private String userName;
     private String password;
 
     public User toEntity() {
         return User.builder()
-                .username(this.username)
+                .userName(this.userName)
                 .password(this.password)
                 .build();
     }

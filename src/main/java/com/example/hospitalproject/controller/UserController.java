@@ -29,8 +29,8 @@ public class UserController {
         UserJoinResponse response = UserJoinResponse.fromUser(userDto);
         return Response.success(response);
     }
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserLoginRequest dto) {
-        return ResponseEntity.ok().body(userService.login(dto.getUserName(), ""));
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<String> login(@RequestBody UserLoginRequest dto) {
+//        return ResponseEntity.ok().body(userService.login(dto.getUserName(), ""));
+//    }
 }

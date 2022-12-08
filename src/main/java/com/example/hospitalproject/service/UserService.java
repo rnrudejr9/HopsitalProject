@@ -24,8 +24,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
 
-    @Value("${jwt.token.secret}")
-    private String secretKey;
+//    @Value("${jwt.token.secret}")
+//    private String secretKey;
     private Long expiredTimeMs = 1000 * 60 * 60l;
 
     public User getUserByUserName(String userName) {
@@ -51,9 +51,9 @@ public class UserService {
 
         return UserDto.fromEntity(savedUser);
     }
-    public String login(String userName, String password) {
-        return JwtTokenUtil.createToken(userName, secretKey, expiredTimeMs);
-    }
+//    public String login(String userName, String password) {
+//        return JwtTokenUtil.createToken(userName, secretKey, expiredTimeMs);
+//    }
 
     public UserResponse getUser(Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
@@ -67,13 +67,13 @@ public class UserService {
     }
 
     public UserResponse addUser(UserRequest dto) {
-        Optional<User> selectedUser = userRepository.findByUserName(dto.getUsername());
+        Optional<User> selectedUser = userRepository.findByUserName(dto.getUserName());
 
         if(selectedUser.isEmpty()){
             User savedUser = userRepository.save(dto.toEntity());
             return new UserResponse(savedUser.getId(), savedUser.getUserName(), "등록이 완료되었습니다.");
         } else {
-            return new UserResponse(null, dto.getUsername(), "해당 username은 이미 존재합니다.");
+            return new UserResponse(null, dto.getUserName(), "해당 username은 이미 존재합니다.");
         }
 
     }
